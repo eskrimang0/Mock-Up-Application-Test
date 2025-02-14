@@ -15,6 +15,7 @@ use yii\base\Model;
 use yii\db\Exception;
 use yii\filters\VerbFilter;
 use frontend\models\ModelHelper; 
+use frontend\models\BiodataSearch;
 
 
 /**
@@ -69,6 +70,17 @@ class BiodataController extends Controller
     //     ]);
     // }
 
+    //     public function actionView($id)
+    // {
+    //     $model = Biodata::findOne(['id_pelamar' => $id]);
+
+    //     if (!$model) {
+    //         throw new NotFoundHttpException('Data biodata tidak ditemukan.');
+    //     }
+
+    //     return $this->render('view', ['model' => $model]);
+    // }
+
     public function actionView($id)
 {
     $model = Biodata::findOne(['id_pelamar' => $id]);
@@ -77,8 +89,26 @@ class BiodataController extends Controller
         throw new NotFoundHttpException('Data biodata tidak ditemukan.');
     }
 
-    return $this->render('view', ['model' => $model]);
+    $pekerjaanProvider = new \yii\data\ActiveDataProvider([
+        'query' => \frontend\models\Pekerjaan::find()->where(['id_pelamar' => $id]),
+    ]);
+
+    $pendidikanProvider = new \yii\data\ActiveDataProvider([
+        'query' => \frontend\models\Pendidikan::find()->where(['id_pelamar' => $id]),
+    ]);
+
+    $pelatihanProvider = new \yii\data\ActiveDataProvider([
+        'query' => \frontend\models\Pelatihan::find()->where(['id_pelamar' => $id]),
+    ]);
+
+    return $this->render('view', [
+        'model' => $model,
+        'pekerjaanProvider' => $pekerjaanProvider,
+        'pendidikanProvider' => $pendidikanProvider,
+        'pelatihanProvider' => $pelatihanProvider,
+    ]);
 }
+
 
 
     /**
@@ -91,7 +121,6 @@ class BiodataController extends Controller
      {
          $user = Yii::$app->user->identity;
      
-         // Cek apakah user sudah mengisi biodata
          if ($user->isFormFilled()) {
              Yii::$app->session->setFlash('error', 'Anda sudah mengisi biodata.');
              return $this->redirect(['view', 'id' => $user->id]);
@@ -100,7 +129,6 @@ class BiodataController extends Controller
          $model = new Biodata();
          $model->id_pelamar = $user->id;
      
-         // Pastikan variabel child tidak undefined
          $pekerjaans = [new Pekerjaan()];
          $pendidikan = [new Pendidikan()];
          $pelatihan = [new Pelatihan()];
@@ -111,7 +139,6 @@ class BiodataController extends Controller
                  if ($model->save()) {
                      $user->markFormAsFilled();
      
-                     // Pekerjaan
                     $pekerjaans = ModelHelper::createMultiple(Pekerjaan::class, $pekerjaans);
                     Model::loadMultiple($pekerjaans, Yii::$app->request->post());
 
@@ -122,8 +149,7 @@ class BiodataController extends Controller
                              throw new Exception('Gagal menyimpan Pekerjaan.');
                          }
                      }
-     
-                     // Pendidikan
+
                     $pendidikan = ModelHelper::createMultiple(Pendidikan::class, $pendidikan);
                     Model::loadMultiple($pendidikan, Yii::$app->request->post());
 
@@ -135,7 +161,6 @@ class BiodataController extends Controller
                          }
                      }
      
-                     // Pelatihan
                     $pelatihan = ModelHelper::createMultiple(Pelatihan::class, $pelatihan);
                     Model::loadMultiple($pelatihan, Yii::$app->request->post());
 
@@ -241,12 +266,10 @@ public function actionUpdate($id)
         throw new NotFoundHttpException('Data biodata tidak ditemukan.');
     }
 
-    // Load data child dari database
     $pekerjaans = Pekerjaan::findAll(['id_pelamar' => $id]);
     $pendidikan = Pendidikan::findAll(['id_pelamar' => $id]);
     $pelatihan = Pelatihan::findAll(['id_pelamar' => $id]);
 
-    // Jika data child kosong, buat array baru agar tidak error
     if (empty($pekerjaans)) {
         $pekerjaans = [new Pekerjaan()];
     }
@@ -261,12 +284,11 @@ public function actionUpdate($id)
         $transaction = Yii::$app->db->beginTransaction();
         try {
             if ($model->save()) {
-                // Hapus data child lama sebelum menyimpan ulang
+
                 Pekerjaan::deleteAll(['id_pelamar' => $id]);
                 Pendidikan::deleteAll(['id_pelamar' => $id]);
                 Pelatihan::deleteAll(['id_pelamar' => $id]);
 
-                // Simpan ulang child tables
                 $pekerjaans = ModelHelper::createMultiple(Pekerjaan::class, $pekerjaans);
                 Model::loadMultiple($pekerjaans, Yii::$app->request->post());
 

@@ -7,7 +7,7 @@ use yii\data\ActiveDataProvider;
 use frontend\models\Biodata;
 
 /**
- * BiodataSearch represents the model behind the search form of `frontend\models\Biodata`.
+ * BiodataSearch represents the model behind the search form of `app\models\Biodata`.
  */
 class BiodataSearch extends Biodata
 {

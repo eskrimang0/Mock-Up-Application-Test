@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var frontend\models\Biodata $model */
 
-$this->title = 'Create Biodata';
-$this->params['breadcrumbs'][] = ['label' => 'Biodatas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+// $this->title = 'Create Biodata';
+// $this->params['breadcrumbs'][] = ['label' => 'Biodatas', 'url' => ['index']];
+// $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="biodata-create">
 

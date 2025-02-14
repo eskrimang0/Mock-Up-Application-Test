@@ -53,18 +53,37 @@ use frontend\models\Pelatihan;
     <div class="container-items-pekerjaan">
         <?php foreach ($pekerjaans as $index => $pekerjaan): ?>
             <div class="item-pekerjaan">
-                <div class="row">
-                    <div class="col-md-3"><?= $form->field($pekerjaan, "[{$index}]perusahaan_riwayat")->textInput() ?></div>
-                    <div class="col-md-3"><?= $form->field($pekerjaan, "[{$index}]posisi_riwayat")->textInput() ?></div>
-                    <div class="col-md-2"><?= $form->field($pekerjaan, "[{$index}]salary_riwayat")->textInput(['type' => 'number', 'step' => '0.000001']) ?></div>
-                    <div class="col-md-2"><?= $form->field($pekerjaan, "[{$index}]tahun_pekerjaan_riwayat")->textInput() ?></div>
-                    <div class="col-md-2"><button type="button" class="remove-item-pekerjaan btn btn-danger">Hapus</button></div>
+                <div class="row align-items-center mb-2">
+                    <div class="col-md-3">
+                        <?= $form->field($pekerjaan, "[{$index}]perusahaan_riwayat", [
+                            'options' => ['class' => 'form-group mb-0']
+                        ])->textInput() ?>
+                    </div>
+                    <div class="col-md-3">
+                        <?= $form->field($pekerjaan, "[{$index}]posisi_riwayat", [
+                            'options' => ['class' => 'form-group mb-0']
+                        ])->textInput() ?>
+                    </div>
+                    <div class="col-md-2">
+                        <?= $form->field($pekerjaan, "[{$index}]salary_riwayat", [
+                            'options' => ['class' => 'form-group mb-0']
+                        ])->textInput(['type' => 'number', 'step' => '0.000001']) ?>
+                    </div>
+                    <div class="col-md-2">
+                        <?= $form->field($pekerjaan, "[{$index}]tahun_pekerjaan_riwayat", [
+                            'options' => ['class' => 'form-group mb-0']
+                        ])->textInput() ?>
+                    </div>
+                    <div class="col-md-2 text-right">
+                        <button type="button" class="remove-item-pekerjaan btn btn-danger">Hapus</button>
+                    </div>
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
 
-    <button type="button" class="add-item-pekerjaan btn btn-success">Tambah</button>
+    <button type="button" class="add-item-pekerjaan btn btn-success mt-2">Tambah</button>
+
     <?php DynamicFormWidget::end(); ?>
 
     <h3>Riwayat Pendidikan</h3>
@@ -84,19 +103,42 @@ use frontend\models\Pelatihan;
     <div class="container-items-pendidikan">
         <?php foreach ($pendidikan as $index => $pendidikanItem): ?>
             <div class="item-pendidikan">
-                <div class="row">
-                    <div class="col-md-3"><?= $form->field($pendidikanItem, "[{$index}]pendidikan_riwayat")->textInput() ?></div>
-                    <div class="col-md-3"><?= $form->field($pendidikanItem, "[{$index}]nama_pendidikan_riwayat")->textInput() ?></div>
-                    <div class="col-md-3"><?= $form->field($pendidikanItem, "[{$index}]jurusan_pendidikan_riwayat")->textInput() ?></div>
-                    <div class="col-md-2"><?= $form->field($pendidikanItem, "[{$index}]tahun_lulus_riwayat")->textInput() ?></div>
-                    <div class="col-md-2"><?= $form->field($pendidikanItem, "[{$index}]ipk_riwayat")->textInput() ?></div>
-                    <div class="col-md-2"><button type="button" class="remove-item-pendidikan btn btn-danger">Hapus</button></div>
+                <div class="row align-items-center mb-2">
+                    <div class="col-md-2">
+                        <?= $form->field($pendidikanItem, "[{$index}]pendidikan_riwayat", [
+                            'options' => ['class' => 'form-group mb-0']
+                        ])->textInput() ?>
+                    </div>
+                    <div class="col-md-3">
+                        <?= $form->field($pendidikanItem, "[{$index}]nama_pendidikan_riwayat", [
+                            'options' => ['class' => 'form-group mb-0']
+                        ])->textInput() ?>
+                    </div>
+                    <div class="col-md-2">
+                        <?= $form->field($pendidikanItem, "[{$index}]jurusan_pendidikan_riwayat", [
+                            'options' => ['class' => 'form-group mb-0']
+                        ])->textInput() ?>
+                    </div>
+                    <div class="col-md-2">
+                        <?= $form->field($pendidikanItem, "[{$index}]tahun_lulus_riwayat", [
+                            'options' => ['class' => 'form-group mb-0']
+                        ])->textInput() ?>
+                    </div>
+                    <div class="col-md-2">
+                        <?= $form->field($pendidikanItem, "[{$index}]ipk_riwayat", [
+                            'options' => ['class' => 'form-group mb-0']
+                        ])->textInput() ?>
+                    </div>
+                    <div class="col-md-1 text-right">
+                        <button type="button" class="remove-item-pendidikan btn btn-danger">Hapus</button>
+                    </div>
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
 
-    <button type="button" class="add-item-pendidikan btn btn-success">Tambah</button>
+    <button type="button" class="add-item-pendidikan btn btn-success mt-2">Tambah</button>
+
     <?php DynamicFormWidget::end(); ?>
 
     <h3>Riwayat Pelatihan</h3>
@@ -116,25 +158,38 @@ use frontend\models\Pelatihan;
     <div class="container-items-pelatihan">
         <?php foreach ($pelatihan as $index => $pelatihanItem): ?>
             <div class="item-pelatihan">
-                <div class="row">
-                    <div class="col-md-4"><?= $form->field($pelatihanItem, "[{$index}]nama_pelatihan")->textInput() ?></div>
+                <div class="row align-items-center mb-2">
                     <div class="col-md-3">
-                        <?= $form->field($pelatihanItem, "[{$index}]sertifikat_pelatihan")->dropDownList(['Ada' => 'Ada', 'Tidak' => 'Tidak'], ['prompt' => 'Pilih']) ?>
+                        <?= $form->field($pelatihanItem, "[{$index}]nama_pelatihan", [
+                            'options' => ['class' => 'form-group mb-0']
+                        ])->textInput() ?>
                     </div>
-                    <div class="col-md-3"><?= $form->field($pelatihanItem, "[{$index}]tahun_pelatihan")->textInput() ?></div>
-                    <div class="col-md-2"><button type="button" class="remove-item-pelatihan btn btn-danger">Hapus</button></div>
+                    <div class="col-md-3">
+                        <?= $form->field($pelatihanItem, "[{$index}]sertifikat_pelatihan", [
+                            'options' => ['class' => 'form-group mb-0']
+                        ])->dropDownList(['Ada' => 'Ada', 'Tidak' => 'Tidak'], ['prompt' => 'Pilih']) ?>
+                    </div>
+                    <div class="col-md-3">
+                        <?= $form->field($pelatihanItem, "[{$index}]tahun_pelatihan", [
+                            'options' => ['class' => 'form-group mb-0']
+                        ])->textInput() ?>
+                    </div>
+                    <div class="col-md-3 text-right">
+                        <button type="button" class="remove-item-pelatihan btn btn-danger">Hapus</button>
+                    </div>
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
 
-    <button type="button" class="add-item-pelatihan btn btn-success">Tambah</button>
+    <button type="button" class="add-item-pelatihan btn btn-success mt-2">Tambah</button>
     <?php DynamicFormWidget::end(); ?>
 
+    <p>
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
-
+    </p>
     <?php ActiveForm::end(); ?>
 
 </div>
