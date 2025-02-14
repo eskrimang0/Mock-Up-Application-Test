@@ -63,7 +63,8 @@ class BiodataSearch extends Biodata
             'ekspektasi_salary_pelamar' => $this->ekspektasi_salary_pelamar,
         ]);
 
-        $query->andFilterWhere(['like', 'posisi_pelamar', $this->posisi_pelamar])
+        $query
+            ->andFilterWhere(['like', 'posisi_pelamar', $this->posisi_pelamar])
             ->andFilterWhere(['like', 'nama_pelamar', $this->nama_pelamar])
             ->andFilterWhere(['like', 'ktp_pelamar', $this->ktp_pelamar])
             ->andFilterWhere(['like', 'ttl_pelamar', $this->ttl_pelamar])

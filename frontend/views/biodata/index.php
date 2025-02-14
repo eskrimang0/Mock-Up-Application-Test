@@ -29,10 +29,10 @@ $this->title = 'Biodatas';
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id_pelamar',
+            //'id_pelamar',
             'posisi_pelamar',
             'nama_pelamar',
-            'ktp_pelamar',
+            //'ktp_pelamar',
             'ttl_pelamar',
             //'jk_pelamar',
             //'agama_pelamar',
@@ -47,6 +47,7 @@ $this->title = 'Biodatas';
             //'ekspektasi_salary_pelamar',
             [
                 'class' => ActionColumn::className(),
+                'template' => '{view}',
                 'urlCreator' => function ($action, Biodata $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id_pelamar]);
                  }

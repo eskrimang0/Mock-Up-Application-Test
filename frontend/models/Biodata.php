@@ -61,10 +61,10 @@ class Biodata extends \yii\db\ActiveRecord
     {
         return [
             'id_pelamar' => 'Id Pelamar',
-            'posisi_pelamar' => 'Posisi Pelamar',
-            'nama_pelamar' => 'Nama Pelamar',
+            'posisi_pelamar' => 'Posisi',
+            'nama_pelamar' => 'Nama',
             'ktp_pelamar' => 'Ktp Pelamar',
-            'ttl_pelamar' => 'Ttl Pelamar',
+            'ttl_pelamar' => 'Tempat tgl. Lahir',
             'jk_pelamar' => 'Jk Pelamar',
             'agama_pelamar' => 'Agama Pelamar',
             'goldar_pelamar' => 'Goldar Pelamar',

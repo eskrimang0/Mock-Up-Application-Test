@@ -22,7 +22,7 @@ use yii\grid\GridView;
 
     <p>
     <?= Html::a('Update', ['update', 'id' => $model->id_pelamar], ['class' => 'btn btn-primary']) ?>
-    <?= Html::a('Delete', ['delete', 'id_pelamar' => $model->id_pelamar], [
+    <?= Html::a('Delete', ['delete', 'id' => $model->id_pelamar], [
         'class' => 'btn btn-danger',
         'data' => [
             'confirm' => 'Are you sure you want to delete this item?',
